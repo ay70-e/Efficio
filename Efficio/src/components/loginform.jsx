@@ -1,12 +1,15 @@
 import { useState } from "react";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline"; 
 
 export default function Loginform() {
   const [show, setShow] = useState(false);
+  const [showpassword, setShowpassword] = useState(false);
+
 
   return (
 
     <div 
- className="min-h-screen flex items-center justify-center bg-gray-100 relative">
+    className="min-h-screen flex items-center justify-center bg-gray-100 relative">
      
      <button  onClick={() => setShow(!show)}
          className="px-6 py-2 relative inline-flex items-end justify-center p-0.5 mb-2 
@@ -40,11 +43,19 @@ export default function Loginform() {
           
         <div className="relative group w-full h-10">
             <input
-              type="password"
+              type={showpassword ? "text" : "password"}
               placeholder="Password"
               className="w-full h-full px-4 py-2 border-0 border-b-2 border-[#ffd972] text-sm font-medium
               text-[#7a8255] bg-transparent z-10 relative focus:outline-none"
             />
+            <button
+              type="button"
+              onClick={() => setShowpassword(!showpassword)}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 z-20 text-[#7a8255]"
+            >
+              {showpassword ? <EyeSlashIcon className="w-5 h-5" /> : <EyeIcon className="w-5 h-5" />}
+            </button>
+
             <span className="absolute bottom-0 left-0 w-full h-0 bg-[#ffd972] transition-all duration-1000 
             group-focus-within:h-full  z-0"></span>
           </div>
