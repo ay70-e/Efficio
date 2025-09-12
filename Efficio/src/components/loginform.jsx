@@ -1,30 +1,25 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline"; 
 
-export default function Loginform() {
-  const [show, setShow] = useState(false);
+export default function Loginform({ onClose }) {
   const [showpassword, setShowpassword] = useState(false);
+  const [visible, setVisible] = useState(false);
 
+   useEffect(() => {
+    const timer = setTimeout(() => setVisible(true), 10); 
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
 
     <div 
-    className="min-h-screen flex items-center justify-center bg-gray-100 relative">
+    className="min-h-[50%] flex items-center justify-center  relative">
      
-     <button  onClick={() => setShow(!show)}
-         className="px-6 py-2 relative inline-flex items-end justify-center p-0.5 mb-2 
-         me-2 overflow-hidden text-sm font-medium text-[#7a8255] rounded-2xl
-          group bg-gradient-to-br from-[#ffd972] to-[#ffb7b2]
-           group hover:from-[#ffd972] group hover:to-[#b8c480] hover:text-white ">
-          Login
-          </button> 
-
       {/* Login Form */}
-      <div  
-        className={`absolute p-10  bg-white rounded-2xl shadow-lg w-800 max-w-full transition-all duration-300 transform ${
-          show ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-90 pointer-events-none"
-        }`}
-      > 
+       <div className={`p-10 bg-white rounded-2xl shadow-lg w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl
+                       transform transition-all duration-500
+                       ${visible ? "opacity-100 scale-100" : "opacity-0 scale-90"}`}>
+
       <div className="flex flex-col items-center gap-0.5 mb-4">
         <h2 className="text-xl  text-[#080808] font-bold mb-4 justify-center rounded">Efficio</h2>
         <p className=" text-[#08080886]">Login with your username and password</p>
@@ -61,7 +56,8 @@ export default function Loginform() {
           </div>
 
         <button
-            onClick={() => setShow(!show)}
+          onClick={onClose}
+
             className="relative w-full py-2 px-4 mb-2 me-2 overflow-hidden text-sm font-medium text-[#080808] rounded-2xl z-10
                       bg-gradient-to-br from-[#b8c480] to-[#b8c480] transition-colors duration-300
                       group hover:text-white"
