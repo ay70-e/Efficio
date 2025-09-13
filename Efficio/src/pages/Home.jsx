@@ -16,9 +16,6 @@ export default function Home() {
         
     <div className="bg-[#FAFAD2] text-gray-800">
       
-
-          
-
       <section className="flex flex-col md:flex-row items-center justify-between px-8 pt-20 pb-16 max-w-6xl mx-auto ">
         <div className="max-w-lg ">
           <h2 className="text-4xl font-extrabold mb-4">
