@@ -4,6 +4,7 @@ import 'aos/dist/aos.css';
 import Loginform from "../components/loginform";
 
 
+
 export default function Home() {
      const [showLogin, setShowLogin] = useState(false);
 
@@ -14,27 +15,9 @@ export default function Home() {
   return (
         
     <div className="bg-[#FAFAD2] text-gray-800">
-      <header data-aos="fade-down-left" className="flex justify-between items-center
-       px-8 py-4 bg-white shadow fixed top-0 left-0 w-full z-50">
-        <h1 className="text-3xl font-bold px-6">Efficio</h1>
-        <nav className="flex space-x-6">
-          <button  onClick={() => setShowLogin(!showLogin)}
-          className="bg-[#FFD972] px-6 py-2 rounded-full font-medium shadow 
-              hover:shadow-lg hover:scale-105 active:scale-95 transition duration-300">
-            Log In
-          </button>
+      
 
-          <button className="bg-[#FFB7B2] px-6 py-2 rounded-full font-medium shadow 
-              hover:shadow-lg hover:scale-105 active:scale-95 transition duration-300">
-            Home
-          </button>
-
-          <button className="bg-[#B8C480] px-6 py-2 rounded-full font-medium shadow 
-              hover:shadow-lg hover:scale-105 active:scale-95 transition duration-300">
-            Contact
-          </button>
-        </nav>
-      </header>
+          
 
       <section className="flex flex-col md:flex-row items-center justify-between px-8 pt-20 pb-16 max-w-6xl mx-auto ">
         <div className="max-w-lg ">
