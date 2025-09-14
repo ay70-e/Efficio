@@ -2,10 +2,12 @@ import {useState,useEffect} from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Loginform from "../components/loginform";
+import { useNavigate } from "react-router-dom";
 
 
 const Navbar = () => {
     const [showLogin, setShowLogin] = useState(false);
+    const navigate = useNavigate();
     
          useEffect(() => {
          AOS.init({ duration: 2000 }); // duration in ms
@@ -23,12 +25,14 @@ const Navbar = () => {
             Log In
           </button>
 
-          <button className="bg-[#FFB7B2] px-6 py-2 rounded-full font-medium shadow 
+          <button onClick={() => navigate("/")}
+           className="bg-[#FFB7B2] px-6 py-2 rounded-full font-medium shadow 
               hover:shadow-lg hover:scale-105 active:scale-95 transition duration-300">
             Home
           </button>
 
-          <button className="bg-[#B8C480] px-6 py-2 rounded-full font-medium shadow 
+          <button onClick={() => navigate("/ProjectsDashboard")}
+           className="bg-[#B8C480] px-6 py-2 rounded-full font-medium shadow 
               hover:shadow-lg hover:scale-105 active:scale-95 transition duration-300">
             Contact
           </button>

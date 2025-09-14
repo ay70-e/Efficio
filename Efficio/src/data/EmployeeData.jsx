@@ -4,10 +4,12 @@ const EmployeeData = () => {
     const [users, setUsers] = useState([
         {
         id: "u1",
-        name: "Aya",
+        name: "Aya Laheb",
         email: "ayalahebjaad@gmail.com",
         password: "efficio",
         role: "employee",
+        role1: "Web Developer",
+        namber: "07xxxxxxxx",
         teamId: "t1"
         },
         {
