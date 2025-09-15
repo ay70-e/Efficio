@@ -31,7 +31,7 @@ const Navbar = () => {
             Home
           </button>
 
-          <button onClick={() => navigate("/ProjectsDashboard")}
+          <button onClick={() => navigate("/EmployeeBoard")}
            className="bg-[#B8C480] px-6 py-2 rounded-full font-medium shadow 
               hover:shadow-lg hover:scale-105 active:scale-95 transition duration-300">
             Contact

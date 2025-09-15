@@ -6,13 +6,13 @@ const TasksData = () => {
             id: "task1",
             title : "Desgin main page",
             description: "",
-            status: "in-progress",
+            status: 70,
             assignedTo: "u2",
             projectId: "p1",
             teamId: "t1",
             startDate: "2025-09-11",
             dueDate: "2025-09-12",
-            timeSpent: 1,
+            timeSpent: 60,
             note: ""
         
         },
@@ -20,13 +20,13 @@ const TasksData = () => {
             id: "task2",
             title : "Employee page",
             description: "",
-            status: "in progress",
+            status:50,
             assignedTo: "u1",
             projectId: "p1",
             teamId: "t1",
             startDate: "2025-09-12",
             dueDate: "2025-09-14",
-            timeSpent: 3,
+            timeSpent: 48,
             note: ""
         
         },
@@ -34,27 +34,56 @@ const TasksData = () => {
             id: "task3",
             title : "Desgin login form",
             description: "",
-            status: "done",
+            status: 80,
             assignedTo: "u1",
             projectId: "p1",
             teamId: "t1",
             startDate: "2025-09-11",
             dueDate: "2025-09-12",
-            timeSpent: 1,
+            timeSpent: 30,
             note: ""
         
         },
         {
-            id: "task3",
+            id: "task4",
             title : "Desgin login form",
             description: "",
-            status: "done",
+            status: 100,
             assignedTo: "u1",
             projectId: "p1",
             teamId: "t1",
             startDate: "2025-09-11",
             dueDate: "2025-09-12",
-            timeSpent: 1,
+            timeSpent: 25,
+            note: ""
+        
+        },
+        
+        {
+            id: "task5",
+            title : "Desgin login2 form",
+            description: "",
+            status: 10,
+            assignedTo: "u1",
+            projectId: "p1",
+            teamId: "t1",
+            startDate: "2025-09-11",
+            dueDate: "2025-09-12",
+            timeSpent: 24,
+            note: "just a note"
+        
+        },
+         {
+            id: "task6",
+            title : "Dashboard",
+            description: "",
+            status: 100,
+            assignedTo: "u1",
+            projectId: "p1",
+            teamId: "t1",
+            startDate: "2025-09-11",
+            dueDate: "2025-09-12",
+            timeSpent: 24,
             note: ""
         
         },
