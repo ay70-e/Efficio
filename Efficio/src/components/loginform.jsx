@@ -1,15 +1,20 @@
 import { useState , useEffect} from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline"; 
+import { useNavigate } from "react-router-dom";
+import useEmployeeData from "../data/EmployeeData";
 
-export default function Loginform({ onClose }) {
+export default function Loginform() {
+  const [userName, setUserName] = useState("");
+const [password, setPassword] = useState("");
   const [showpassword, setShowpassword] = useState(false);
   const [visible, setVisible] = useState(false);
-
+const navigate = useNavigate();
    useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 10); 
     return () => clearTimeout(timer);
   }, []);
-
+const { users } = useEmployeeData();
+const currentUser = users.find(user => user.name === userName);
   return (
 
     <div 
@@ -29,6 +34,9 @@ export default function Loginform({ onClose }) {
             <input
               type="text"
               placeholder="Username"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+
               className="w-full h-full px-4 py-2 border-0 border-b-2 border-[#ffd972] text-sm font-medium
               text-[#080808] bg-transparent z-10 relative focus:outline-none"
             />
@@ -38,8 +46,11 @@ export default function Loginform({ onClose }) {
           
         <div className="relative group w-full h-10">
             <input
-              type={showpassword ? "text" : "password"}
+             type={showpassword ? "text" : "password"}
               placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+
               className="w-full h-full px-4 py-2 border-0 border-b-2 border-[#ffd972] text-sm font-medium
               text-[#7a8255] bg-transparent z-10 relative focus:outline-none"
             />
@@ -55,17 +66,24 @@ export default function Loginform({ onClose }) {
             group-focus-within:h-full  z-0"></span>
           </div>
 
-        <button
-          onClick={onClose}
+       <button
+ 
+      onClick={() => {
+        if (currentUser?.role === "manager") {
+          navigate(`/Mangerboard/${currentUser?.id}`);
+        } else {
+          navigate(`/employeeboard/${currentUser?.id}`);
+        }
+      }}
 
-            className="relative w-full py-2 px-4 mb-2 me-2 overflow-hidden text-sm font-medium text-[#080808] rounded-2xl z-10
-                      bg-gradient-to-br from-[#b8c480] to-[#b8c480] transition-colors duration-300
-                      group hover:text-white"
-          >
-        <span className="absolute bottom-0 left-0 w-full h-0 bg-gradient-to-t from-[#ffd972] to-[#ffd972] z-0
-                            transition-all duration-700 ease-in-out group-hover:h-full rounded-2xl"></span>
-        <span className="relative z-10">Login</span>
-        </button>
+  className="relative w-full py-2 px-4 mb-2 me-2 overflow-hidden text-sm font-medium text-[#080808] rounded-2xl z-10
+            bg-gradient-to-br from-[#b8c480] to-[#b8c480] transition-colors duration-300
+            group hover:text-white"
+>
+  <span className="absolute bottom-0 left-0 w-full h-0 bg-gradient-to-t from-[#ffd972] to-[#ffd972] z-0
+                  transition-all duration-700 ease-in-out group-hover:h-full rounded-2xl"></span>
+  <span className="relative z-10">Login</span>
+</button>
         </div>
       </div>
      

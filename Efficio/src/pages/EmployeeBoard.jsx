@@ -1,6 +1,9 @@
 {/* imports part */}
 {/*==============================================================================================================*/}
 import {React,useState} from "react";
+
+
+import { useParams } from "react-router-dom";
 import {Carousel,CarouselContent,CarouselItem,CarouselNext,CarouselPrevious,} from "@/components/ui/carousel";
 import { Progress } from "@/components/ui/progress"
 import { Calendar } from "@/components/ui/calendar"
@@ -42,6 +45,8 @@ const TaskCard = ({ task, project }) => (
 {/*const part*/}
 {/*==============================================================================================================*/}
 const EmployeeBoard = () => {
+
+const { id } = useParams();
 const [showAlert, setShowAlert] = useState(false);
 const [selectedTask, setSelectedTask] = useState(null);
 const [mTasks, setMyTasks] = useState([]);
@@ -55,11 +60,14 @@ const [newTask, setNewTask] = useState({
   status: 0,
 });
 
-const currentUserId = "u1"; // Simulated login this is static for now
-const currentUser = users?.find(user => user.id === currentUserId);
-    if (!currentUser) return <p className="p-6 text-red-600">User not found.</p>;
 
-const myTasks = tasks?.filter(task => task.assignedTo === currentUserId) || [];
+ 
+  const currentUser = users?.find(user => user.id === id);
+
+
+
+
+const myTasks = tasks?.filter(task => task.assignedTo === currentUser?.id) || [];
   
 const chartData = ({ task }) => ({
   title: task.title,
@@ -69,9 +77,18 @@ const chartData = ({ task }) => ({
 const chartDataset = myTasks.map(task => chartData({ task }));
 const allTasks = [...mTasks, ...myTasks];
  
-
+console.log("Current ID:", id);
+console.log("Current User:", currentUser);
+console.log("Tasks:", tasks);
+console.log("Filtered Tasks:", myTasks);
   return (
     <div>
+      
+       {showAlert ? (
+        <p className="text-red-500">Employee not found.</p>
+      ) : (
+        <>
+
      <Navbar />
      
     <div className="pt-20 flex min-h-screen ">
@@ -349,7 +366,7 @@ const allTasks = [...mTasks, ...myTasks];
       />
     </div>
 
-    <AlertDialogFooter className="justify-center mt-2">
+    <AlertDialogFooter className="justify-center mt-2 px-50">
       <AlertDialogAction
         className="bg-[#FFB7B2] hover:bg-[#FFD972] text-black px-4 py-2 rounded-full text-sm"
         onClick={() => setShowAlert(false)}
@@ -407,6 +424,9 @@ const allTasks = [...mTasks, ...myTasks];
  
 
 </div>
+ </>
+ )}
+
   </div>
 
   );
