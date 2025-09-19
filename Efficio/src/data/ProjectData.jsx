@@ -9,7 +9,10 @@ const ProjectData = () => {
       startDate: "2025-09-10",
       endDate: "2025-09-19",
       managerId: "u3",
-      teamId: "t1"
+      teamId: "t1",
+      status: 70,
+      timeSpent: 60,
+
     },
     {
       id: 'p2',
@@ -18,7 +21,10 @@ const ProjectData = () => {
       startDate: "2025-09-10",
       endDate: "2025-09-19",
       managerId: "u4",
-      teamId: "t2"
+      teamId: "t2",
+       status: 50,
+      timeSpent: 10,
+
     },
      {
       id: 'p3',
@@ -27,7 +33,10 @@ const ProjectData = () => {
       startDate: "2025-09-10",
       endDate: "2025-09-19",
       managerId: "u3",
-      teamId: "t3"
+      teamId: "t3",
+       status: 30,
+      timeSpent: 30,
+
     },
      {
       id: 'p4',
@@ -36,7 +45,10 @@ const ProjectData = () => {
       startDate: "2025-09-10",
       endDate: "2025-09-19",
       managerId: "u3",
-      teamId: "t4"
+      teamId: "t4",
+       status: 70,
+      timeSpent: 60,
+
     },
      {
       id: 'p5',
@@ -45,7 +57,10 @@ const ProjectData = () => {
       startDate: "2025-09-10",
       endDate: "2025-09-19",
       managerId: "u3",
-      teamId: "t5"
+      teamId: "t5",
+       status: 100,
+      timeSpent: 90,
+
     },
      {
       id: 'p6',
@@ -54,7 +69,10 @@ const ProjectData = () => {
       startDate: "2025-09-10",
       endDate: "2025-09-19",
       managerId: "u3",
-      teamId: "t6"
+      teamId: "t6",
+       status: 60,
+      timeSpent: 20,
+
     },
   ])
   return (

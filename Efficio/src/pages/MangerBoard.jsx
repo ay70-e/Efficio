@@ -29,7 +29,8 @@ AlertDialogHeader,AlertDialogTitle,AlertDialogTrigger,} from "@/components/ui/al
 const TaskCard = ({ task, project }) => {
   const navigate = useNavigate();
 
- 
+  
+
 
   return (
     <div>
@@ -113,7 +114,10 @@ const currentUser = users?.find(user => user.id === id);
 const myProjects = projects?.filter(p => p.managerId === currentUser?.id) || [];
 
 
-
+ const taskCards = mTasks.map(task => {
+    const project = myProjects.find(p => p.id === task.projectId);
+    return <TaskCard key={task.id} task={task} project={project} />;
+  });
 
 const chartDataset = myProjects.map(project => ({
   title: project.title,
@@ -184,7 +188,7 @@ const allTasks = [...mTasks, ...myProjects];
                 d="M2.25 6.75a16.5 16.5 0 0014.5 14.5l3-3a1.5 1.5 0 00-.375-2.475l-4.125-2.25a1.5 1.5 0 00-1.875.375l-1.125 1.125a12.75 12.75 0 01-6.375-6.375l1.125-1.125a1.5 1.5 0 00.375-1.875L4.725 3.375A1.5 1.5 0 002.25 3.75v3z"
               />
             </svg>
-            {currentUser.namber}
+            {currentUser.number}
           </p>
 
           
@@ -302,7 +306,7 @@ const allTasks = [...mTasks, ...myProjects];
           </p>
           <button 
           onClick={() => navigate("/employees")}
-          className="bg-[#FFB7B2] px-6 py-2 rounded-lg font-medium shadow
+          className="bg-[#FFB7B2] px-6 py-2 mb-2 rounded-lg font-medium shadow
               hover:shadow-lg hover:scale-105 active:scale-95 transition duration-300">
             Show Employees
           </button>
@@ -313,7 +317,7 @@ const allTasks = [...mTasks, ...myProjects];
         <div className=" max-w-lg mt-0 md:mt-0">
           <img
             data-aos="fade-left"
-            src="..\imges\profile.png"
+            src="..\imges\mangerpage.svg"
             alt="Team working"
             className="w-[200px]"
           />
@@ -345,6 +349,9 @@ const allTasks = [...mTasks, ...myProjects];
                   >
                     View Project
                   </button>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+  {taskCards}
+</div>
                 </div>
               </div>
             </CarouselItem>

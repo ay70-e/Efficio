@@ -1,5 +1,6 @@
 import React from "react";
 import { useState,forwardRef , useRef } from "react";
+import { useParams } from "react-router-dom";
 
 import Navbar from "../components/navbar";
 import EmployeeTable from "../components/EmployeeTable";
@@ -22,13 +23,14 @@ import { Button } from "@/components/ui/button";
 
 
 const ProjectsDashboard = () => {
-  
+  const { id } = useParams();
+
   const { users } = useEmployeeData();
   const { projects } = useProjectData();
   const { tasks } = useTasksData();
 
-  const selectedProjectId = projects?.[0]?.id || "p1";
-  const project = projects?.find(p => p.id === selectedProjectId) || null;
+
+ const project = projects?.find(p => p.id === id) || null;
   const [query, setQuery] = useState("");
 
 const handleSelectTask = (taskId) => {
@@ -73,22 +75,25 @@ tasks.forEach(task => {
       )
     : 0;
 
-   const myTasks = tasks?.filter(task => task.assignedTo === project.managerId) || [];
 
-
-
-const chartData = ({ task }) => ({
+const myTasks = projectTasks; 
+const chartDataset = projectTasks.map(task => ({
   title: task.title,
   progress: task.status,
-  timeSpent: task.timeSpent
-});
-const chartDataset = myTasks.map(task => chartData({ task }));
+  timeSpent: task.timeSpent || 0,
+}));
+
+
+
 const TaskCard =  forwardRef(({ task, project, isSelected }, ref) => {
   const cardStyle = isSelected
     ? " "
     : "";
-
-
+console.log("myTasks:", myTasks);
+console.log("chartDataset:", chartDataset);
+console.log("project.managerId:", project?.managerId);
+console.log("All assignedTo values:", tasks.map(t => t.assignedTo));
+console.log("Rendering task:", task.title);
   return (
      <div
       ref={ref}
@@ -201,7 +206,7 @@ const filteredTasks = tasks?.filter(t =>
             <div className="bg-[#FFB7B2] shadow-md rounded-2xl p-6 text-center mb-6 hover:shadow-xl hover:scale-105 hover:-translate-y-1 transition duration-300">
               <div className="flex flex-col items-center mb-1 gap-4">
                 <div className="space-y-2 text-black">
-                  <h2 className="text-2xl font-extrabold mb-0">{project.name}</h2><br></br>
+                  <h2 className="text-2xl font-extrabold mb-0">{project?.name}</h2><br></br>
                   <p className="text-gray-700 font-semibold text-start ">Project Leader: </p>
                   <p  className="text-gray-900"> {manager?.name || "N/A"} </p>
                 
@@ -433,7 +438,7 @@ const filteredTasks = tasks?.filter(t =>
               project={projects.find(p => p.id === task.projectId)}
               users={users}
               isSelected={selectedTask?.id === task.id}
-               ref={taskRefs.current[task.id]} // ✅ pass the ref
+               ref={taskRefs.current[task.id]} // pass the ref
 
             />
             

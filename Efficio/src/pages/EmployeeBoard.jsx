@@ -12,6 +12,7 @@ import Navbar from "../components/navbar";
 import useEmployeeData from "../data/EmployeeData";
 import useProjectData from "../data/ProjectData";
 import useTasksData from "../data/TasksData";
+import { useNavigate } from "react-router-dom";
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip } from "recharts";
 import {AlertDialog,AlertDialogAction,AlertDialogCancel,AlertDialogContent,AlertDialogDescription,AlertDialogFooter,
 AlertDialogHeader,AlertDialogTitle,AlertDialogTrigger,} from "@/components/ui/alert-dialog"
@@ -21,22 +22,44 @@ AlertDialogHeader,AlertDialogTitle,AlertDialogTrigger,} from "@/components/ui/al
 
 {/*==============================================================================================================*/}
 
-const TaskCard = ({ task, project }) => (
-  <div >
-    <p className="text-gray-400">{task.startDate}</p>
-    <h3 className="text-lg font-semibold ">{task.title}</h3>
-    <p className="text-gray-700">{project?.name || "There is no project now"}</p>
-    <div className="mt-1 pb-1"><Progress value={task.status} className="bg-gray-200 [&>div]:bg-[#B8C480] [&>div]:rounded-full h-2"
- /> </div>
-    <hr className="mt-1 pb-1 border-gray-400"></hr>
-     {task.note && <p><strong>Note:</strong> {task.note}</p>}
-    <div className="flex justify-between text-gray-400 ">
-      <p><strong className="text-black">Due:</strong> {task.dueDate}</p>
-       <p > {task.timeSpent} hrs</p>
+ 
+
+const TaskCard = ({ task, project }) => {
+  const navigate = useNavigate(); // ✅ نستخدمه للتنقل
+
+  return (
+    <div>
+      <p className="text-gray-400">{task.startDate}</p>
+      <h3 className="text-lg font-semibold">{task.title}</h3>
+      <p className="text-gray-700">{project?.name || "There is no project now"}</p>
+
+      <div className="mt-1 pb-1">
+        <Progress
+          value={task.status}
+          className="bg-gray-200 [&>div]:bg-[#B8C480] [&>div]:rounded-full h-2"
+        />
+      </div>
+
+      <hr className="mt-1 pb-1 border-gray-400" />
+
+      {task.note && <p><strong>Note:</strong> {task.note}</p>}
+
+      <div className="flex justify-between text-gray-400">
+        <p><strong className="text-black">Due:</strong> {task.dueDate}</p>
+        <p>{task.timeSpent} hrs</p>
+      </div>
+
+      <div className="flex justify-end mt-4">
+        <button
+          onClick={() => navigate(`/ProjectsDashboard/${project.id}`)}
+          className="bg-[#B8C480] text-white px-4 py-2 rounded text-sm hover:bg-[#a0ac6e]"
+        >
+          View Project Board
+        </button>
+      </div>
     </div>
-   
-  </div>
-);
+  );
+};
 {/*==============================================================================================================*/}
 
 {/* EmployeeBoard component - main component for the employee dashboard */}
